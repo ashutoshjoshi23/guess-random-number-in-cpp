@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+// Function to generate a random number within a range
+int getRandomNumber(int min, int max) {
+    static const double fraction = 1.0 / (RAND_MAX + 1.0);
+    return min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
+}
+
+int main() {
+    std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed the random number generator
+
+    int guessCount = 0;
+    int guess;
+    const int MIN = 1;
+    const int MAX = 100;
+    int randomNumber = getRandomNumber(MIN, MAX);
+
+    std::cout << "Welcome to the Number Guessing Game!" << std::endl;
+    std::cout << "I'm thinking of a number between " << MIN << " and " << MAX << ". Guess what it is." << std::endl;
+
+    while (true) {
+        std::cout << "Enter your guess: ";
+        std::cin >> guess;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+
+        guessCount++;
+
+        if (guess == randomNumber) {
+            std::cout << "Congratulations! You guessed the number in " << guessCount << " guesses." << std::endl;
+            break;
+        }
+        else if (guess < randomNumber) {
+            std::cout << "Too low! Try guessing higher." << std::endl;
+        }
+        else {
+            std::cout << "Too high! Try guessing lower." << std::endl;
+        }
+    }
+
+    return 0;
+}
