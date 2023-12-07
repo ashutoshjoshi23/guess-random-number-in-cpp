@@ -1,0 +1,3 @@
+Created Guess Random Number Project Using C++... 
+This program generates a random number between 1 and 100 and prompts the user to guess it. 
+It provides hints ('Too low' or 'Too high') based on the user's input and terminates when the user correctly guesses the number
